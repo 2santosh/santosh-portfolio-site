@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Library Management System",
+    "desc": "A simple system designed to help libraries manage book records, track student information, and handle administrative data efficiently.",
+    "image": "library-c",
+    "category": "c",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/Library-Management-System"
+    }
+  },
+  {
+    "name": "Snake Game Project",
+    "desc": "A classic single-player game where the player guides a snake to consume objects, growing longer with each item eaten, making navigation more challenging.",
+    "image": "snack-game-c++",
+    "category": "cpp",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/Snake_Game"
+    }
+  },
+  {
+    "name": "Smart Parking System",
+    "desc": "A Smart Parking System automates parking management, saving time and enhancing user experience in offices and residential areas.",
+    "image": "sps-c",
+    "category": "micro",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/Smart_Car_Parking_System"
+    }
+  },
+  {
+    "name": "CRDS",
+    "desc": ".",
+    "image": "crds",
+    "category": "java",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/CRDS"
+    }
+  },
+  {
+    "name": "Banking System",
+    "desc": ".",
+    "image": "banking-java",
+    "category": "java",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/Banking_System"
+    }
+  },
+  {
+    "name": "Arduino Smart Car",
+    "desc": "",
+    "image": "",
+    "category": "arduino",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/Arduino_Smart_car"
+    }
+  },
+  {
+    "name": "Banking System PHP",
+    "desc": "",
+    "image": "",
+    "category": "php",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/Banking_system_php"
+    }
+  },
+  {
+    "name": "Movie-Recommendation-System",
+    "desc": "",
+    "image": "reactprojects",
+    "category": "python",
+    "links": {
+      "view": "",
+      "code": "https://github.com/2santosh/movie-recommendation"
+    }
+  }
+]

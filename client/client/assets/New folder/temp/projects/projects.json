@@ -1,0 +1,53 @@
+{
+  "projects": [
+    {
+      "name": "Library Management System",
+      "desc": "Project Captain, supervised a project team on delegated tasks, coordinated the design team, created and coordinated a set of construction documents, coding, testing, and debugging.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/Library-Management-System"
+    },
+    {
+      "name": "Snake Game",
+      "desc": "Project Captain, supervised a project team on delegated tasks, coordinated the design team, created and coordinated a set of construction documents, coding, testing, and debugging.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/Snake_Game"
+    },
+    {
+      "name": "Smart Parking System",
+      "desc": "Project Caption, supervised a project team on delegated tasks, coordinated the design team, researched planning, coding, assembling the hardware, debugging, and documenting.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/Smart_Car_Parking_System"
+    },
+    {
+      "name": "Banking System",
+      "desc": "Project Caption, supervised a project team on delegated tasks, coordinated the design team, created and coordinated a set of construction documents, coding, testing, and debugging.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/Banking_System"
+    },
+    {
+      "name": "CRDS",
+      "desc": "Project Caption, supervised a project team on delegated tasks, coordinated the design team, created and coordinated a set of construction documents, coding, testing, and debugging.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/CRDS"
+    },
+    {
+      "name": "Smart Car",
+      "desc": "Research planning, coding, assembling the hardware, debugging, and documenting.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/Arduino_Smart_car"
+    },
+    {
+      "name": "Banking System (PHP)",
+      "desc": "Project Captain, supervised a project team on delegated tasks, coordinated the design team, created and coordinated a set of construction documents, coding, testing, and debugging.",
+      "image": "",
+      "category": "",
+      "link": "https://github.com/2santosh/Banking_system_php"
+    }
+  ]
+}
