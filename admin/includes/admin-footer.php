@@ -5,7 +5,10 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="footer__top__logo">
-                            <a href="../index.php"><img src="<?php echo $base_path; ?>assets/images/logo.png" alt=""></a>
+                            <a href="../index.php">
+                                <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="" style="height: 40px;">
+                            </a>
+
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -72,7 +75,7 @@
                             All rights reserved | This template is made with <i class="fa fa-heart-o"
                                 aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         </p>
-                      
+
                     </div>
                 </div>
             </div>
@@ -89,6 +92,6 @@
     <script src="<?php echo $base_path; ?>assets/js/jquery.slicknav.js"></script>
     <script src="<?php echo $base_path; ?>assets/js/owl.carousel.min.js"></script>
     <script src="<?php echo $base_path; ?>assets/js/main.js"></script>
-</body>
+    </body>
 
-</html>
+    </html>

@@ -27,7 +27,7 @@ if ((int)$userData['user_count'] === 0) {
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: " . BASE_URL . "/admin/dashboard.php");
+    header("Location: " . BASE_URL . "/admin/pages/dashboard.php");
     exit();
 }
 
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
-            header("Location: " . BASE_URL . "/admin/dashboard.php");
+            header("Location: " . BASE_URL . "/admin/pages/dashboard.php");
             exit();
         } else {
             error_log("Password incorrect for user: $username");

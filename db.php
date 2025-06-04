@@ -157,3 +157,12 @@ function getExperience(): array {
     }
     return $experience;
 }
+
+// Fetch all messages
+function getAllMessages(): array {
+    global $mysqli;
+    $messages = [];
+    $res = $mysqli->query("SELECT * FROM contact_messages ORDER BY submitted_at DESC");
+    if ($res) $messages = $res->fetch_all(MYSQLI_ASSOC);
+    return $messages;
+}

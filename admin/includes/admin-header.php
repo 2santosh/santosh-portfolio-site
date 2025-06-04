@@ -65,8 +65,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="<?php echo $isLoggedIn ? $base_path.'admin/dashboard.php' : $base_path.'index.php'; ?>">
-                            <img src="<?php echo $base_path; ?>assets/images/logos.png" alt="Admin Logo">
+                        <a href="<?php echo $isLoggedIn ? $base_path.'admin/pages/dashboard.php' : $base_path.'index.php'; ?>">
+                            <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="Admin Logo" style="height: 40px;">
                         </a>
                     </div>
                 </div>

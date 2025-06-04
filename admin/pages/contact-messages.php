@@ -12,18 +12,20 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Send reply email and mark as replied
-// Send reply email and mark as replied
+// Send reply email
 if (isset($_GET['reply_message'])) {
     $id = (int)$_GET['reply_message'];
-    $res = $conn->query("SELECT * FROM contact_messages WHERE id=$id");
+    $res = $mysqli->query("SELECT * FROM contact_messages WHERE id=$id"); // FIXED
     $msg = $res->fetch_assoc();
 
     if ($msg) {
-        // ... email code ...
+        $to = $msg['email'];
+        $subject = "Re: " . ($msg['subject'] ?? 'Your Message');
+        $reply_body = "Dear " . $msg['name'] . ",\n\nThank you for your message. We will get back to you shortly.\n\nRegards,\nSantosh";
+        $headers = "From: your-email@example.com";
 
         if (mail($to, $subject, $reply_body, $headers)) {
-            $conn->query("UPDATE contact_messages SET replied=1 WHERE id=$id");
+            $mysqli->query("UPDATE contact_messages SET replied=1 WHERE id=$id"); // FIXED
             $_SESSION['message'] = "Reply sent to " . htmlspecialchars($msg['email']);
         } else {
             $_SESSION['message'] = "Failed to send reply email.";
@@ -33,16 +35,7 @@ if (isset($_GET['reply_message'])) {
     exit();
 }
 
-// Fetch all messages
-$messages = [];
-$res = $conn->query("SELECT * FROM contact_messages ORDER BY submitted_at DESC");
-if ($res) $messages = $res->fetch_all(MYSQLI_ASSOC);
-
-// Fetch all messages
-$messages = [];
-$res = $conn->query("SELECT * FROM contact_messages ORDER BY submitted_at DESC");
-if ($res) $messages = $res->fetch_all(MYSQLI_ASSOC);
-
+$messages = getAllMessages(); // assumes this uses $mysqli internally
 require_once ROOT_PATH . '/admin/includes/admin-header.php';
 ?>
 
