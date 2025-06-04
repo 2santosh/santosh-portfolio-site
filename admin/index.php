@@ -1,13 +1,19 @@
 <?php
-// admin/index.php
-include_once(__DIR__ . '/controllers/AdminController.php');
+// Start session
+session_start();
 
-use Admin\AdminController;
+// Set base path
+$base_path = '/santosh-portfolio-site/';
 
-$controller = new AdminController();
-$data = $controller->getAdminData();
+// Check if admin is logged in
+$is_logged_in = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 
-// Include other view files if needed
-include 'views/header.php';
-include 'views/dashboard.php';
-include 'views/footer.php';
+// Redirect based on login status
+if ($is_logged_in) {
+    header("Location: {$base_path}admin/dashboard.php");
+} else {
+    header("Location: {$base_path}admin/login/login.php");
+}
+
+exit();
+?>

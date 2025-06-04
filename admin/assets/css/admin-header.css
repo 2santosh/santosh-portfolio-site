@@ -1,0 +1,67 @@
+#admin-header {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.admin-container {
+    width: 100%;
+    padding: 15px;
+}
+
+.admin-login-card {
+    max-width: 400px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.admin-login-header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.admin-login-body {
+    padding: 30px;
+}
+
+.admin-form-control {
+    padding: 12px 15px;
+    font-size: 1rem;
+}
+
+.admin-btn-login {
+    background-color: #343a40;
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.admin-btn-login:hover {
+    background-color: #23272b;
+}
+
+.admin-alert {
+    font-size: 0.95rem;
+    padding: 10px 15px;
+}
+
+.admin-forgot a {
+    color: #343a40;
+    text-decoration: none;
+}
+
+.admin-forgot a:hover {
+    text-decoration: underline;
+}
