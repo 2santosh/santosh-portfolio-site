@@ -1,19 +1,18 @@
 <?php
-// Set base path dynamically
-$base_path = '/portfolio-site/';
+require_once './db.php';
 
-// Set default page title if not defined
-if (!isset($pageTitle)) {
-    $pageTitle = 'Template';
-}
+$homepageData = getHomepageContent();
+$homepage = $homepageData['content'];
+$social_links = $homepageData['social_links'];
 
-// Get current page filename
-$current_page = basename($_SERVER['PHP_SELF']);
+$aboutData = getAboutMe();
+$about = $aboutData['content'];
+$about_links = $aboutData['links'];
 
-// Function to check if menu item is active
-function isActive($page_name, $current_page) {
-    return ($page_name === $current_page) ? 'class="active"' : '';
-}
+$skills = getSkills();
+$educationList = getEducation();
+$projects = getProjects();
+$experienceList = getExperience();
 ?>
 
 <!DOCTYPE html>
@@ -21,86 +20,97 @@ function isActive($page_name, $current_page) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Videograph Template">
-    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Videograph | <?php echo htmlspecialchars($pageTitle); ?></title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/elegant-icons.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/slicknav.min.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/style.css">
+    <meta name="robots" content="index, follow">
+    <meta name="description"
+        content="Welcome to Santosh's Portfolio. Full-Stack Web Developer specializing in modern web technologies and innovative applications.">
+    <meta name="keywords"
+        content="santosh adhikari, portfolio, full stack developer, web developer, Android developer, CodeHiveSantosh, santosh web developer, santosh website developer, santoshadhikari123">
+    <meta property="og:title" content="Portfolio | Santosh Adhikari | CodeHiveSantosh">
+    <meta property="og:description"
+        content="Welcome to Santosh's Portfolio. Full-Stack Web Developer specializing in modern web technologies and innovative applications.">
+    <meta property="og:image" content="http://santoshadhikari123.com.np/assets/images/hero.jpg">
+    <meta property="og:url" content="http://santoshadhikari123.com.np/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio | Santosh Adhikari | CodeHiveSantosh">
+    <meta name="twitter:description"
+        content="Welcome to Santosh's Portfolio. Full-Stack Web Developer specializing in modern web technologies and innovative applications.">
+    <meta name="twitter:image" content="http://santoshadhikari123.com.np/assets/images/hero.jpg">
+    <link rel="canonical" href="http://santoshadhikari123.com.np/" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link id='favicon' rel="shortcut icon" href="./assets/images/logo.png"
+        onerror="this.src='./assets/images/logo.png';" type="image/x-png">
+    <title>Portfolio | Santosh Adhikari | CodeHiveSantosh</title>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Santosh Adhikari",
+        "jobTitle": "Full-Stack Web Developer",
+        "url": "http://santoshadhikari123.com.np/",
+        "sameAs": [
+            "https://www.linkedin.com/in/santosh-adhikari-79a783233/",
+            "https://github.com/2santosh",
+            "https://twitter.com/aslicecode"
+        ],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "College of Information Technology and Engineering"
+        },
+        "knowsAbout": ["Web Development", "JavaScript", "PHP", "Python", "Java", "MySQL"],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "RWS (p2h)"
+        }
+    }
+    </script>
 </head>
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+<body oncontextmenu="return false">
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="<?php echo $base_path; ?>index.php">
-                            <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="Company Logo"
-                                class="header-logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="header__nav__option">
-                        <nav class="header__nav__menu mobile-menu">
-                            <ul>
-                                <li <?php echo isActive('index.php', $current_page); ?>>
-                                    <a href="<?php echo $base_path; ?>index.php">Home</a>
-                                </li>
-                                <li <?php echo isActive('about.php', $current_page); ?>>
-                                    <a href="<?php echo $base_path; ?>about.php">About</a>
-                                </li>
-                                <li <?php echo isActive('projects.php', $current_page); ?>>
-                                    <a href="<?php echo $base_path; ?>projects.php">Projects</a>
-                                </li>
-                                <li <?php echo isActive('services.php', $current_page); ?>>
-                                    <a href="<?php echo $base_path; ?>services.php">Services</a>
-                                </li>
-                                <li>
-                                    <a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="<?php echo $base_path; ?>about.php">About</a></li>
-                                        <li><a href="<?php echo $base_path; ?>projects.php">Projects</a></li>
-                                        <li><a href="<?php echo $base_path; ?>blog.php">Blog</a></li>
-                                        <li><a href="<?php echo $base_path; ?>blog-details.php">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li <?php echo isActive('contact.php', $current_page); ?>>
-                                    <a href="<?php echo $base_path; ?>contact.php">Contact</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="header__nav__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
+    <!-- pre loader -->
+    <!-- <div class="loader-container">
+    <img draggable="false" src="./assets/images/preloader.gif" alt="Loading...">
+  </div> -->
+
+    <!-- navbar starts -->
+    <header>
+        <a href="/" class="logo" style="position: relative; display: inline-block; width: 50px; height: 50px;">
+            <img src="./assets/images/logo.png" onerror="this.src='./assets/images/logo.png';" alt="Santosh Logo"
+                style="width: 36px; height: auto; display: block; position: relative; z-index: 1;" />
+            <span style="
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 50px;
+          height: 50px;
+          background-color: rgba(0, 0, 0, 0.1);
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          transition: transform 0.3s ease;
+          z-index: 0;
+        "></span>
+        </a>
+
+        <div id="menu" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <!-- Header End -->
+    <!-- navbar ends -->

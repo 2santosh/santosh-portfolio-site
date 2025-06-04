@@ -77,7 +77,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                                 <?php if ($isLoggedIn): ?>
                                 <!-- Admin Navigation -->
                                 <li <?php echo isActive('dashboard.php', $current_page); ?>>
-                                    <a href="<?php echo $base_path; ?>admin/dashboard.php">
+                                    <a href="<?php echo $base_path; ?>admin/pages/dashboard.php">
                                         <i class="fa fa-home"></i> Dashboard
                                     </a>
                                 </li>

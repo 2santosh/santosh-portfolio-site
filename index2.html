@@ -1,190 +1,559 @@
-<!--
-=========================================================
-DEFAULT WEB PAGE - THIS FILE CANNOT BE EDITED
-COPYRIGHT INFINITYFREE
-=========================================================
-
-This default web page is protected against modifications.
-
-To upload your own site, please delete this file and
-upload your own page as "index.php" or "index.html".
-
-=========================================================
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to your InfinityFree website</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400">
-    <link rel="stylesheet" href="https://vpassets.infinityfree.net/welcome2024/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Welcome to Santosh's Portfolio. Full-Stack Web Developer specializing in modern web technologies and innovative applications.">
+  <meta name="keywords" content="santosh adhikari, portfolio, full stack developer, web developer, Android developer, CodeHiveSantosh, santosh web developer, santosh website developer, santoshadhikari123">
+  <meta property="og:title" content="Portfolio | Santosh Adhikari | CodeHiveSantosh">
+  <meta property="og:description" content="Welcome to Santosh's Portfolio. Full-Stack Web Developer specializing in modern web technologies and innovative applications.">
+  <meta property="og:image" content="http://santoshadhikari123.com.np/assets/images/hero.jpg">
+  <meta property="og:url" content="http://santoshadhikari123.com.np/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portfolio | Santosh Adhikari | CodeHiveSantosh">
+  <meta name="twitter:description" content="Welcome to Santosh's Portfolio. Full-Stack Web Developer specializing in modern web technologies and innovative applications.">
+  <meta name="twitter:image" content="http://santoshadhikari123.com.np/assets/images/hero.jpg">
+  <link rel="canonical" href="http://santoshadhikari123.com.np/" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Favicon -->
+  <link id='favicon' rel="shortcut icon" href="./assets/images/logo.png" onerror="this.src='./assets/images/logo.png';" type="image/x-png">
+  <title>Portfolio | Santosh Adhikari | CodeHiveSantosh</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Santosh Adhikari",
+      "jobTitle": "Full-Stack Web Developer",
+      "url": "http://santoshadhikari123.com.np/",
+      "sameAs": [
+        "https://www.linkedin.com/in/santosh-adhikari-79a783233/",
+        "https://github.com/2santosh",
+        "https://twitter.com/aslicecode"
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "College of Information Technology and Engineering"
+      },
+      "knowsAbout": ["Web Development", "JavaScript", "PHP", "Python", "Java", "MySQL"],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "RWS (p2h)"
+      }
+    }
+  </script>
 </head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <div class="site-header-inner">
-                <div class="brand header-brand">
-                    <h1 class="m-0">
-                        <a href="https://www.infinityfree.com">
-                            <img src="https://vpassets.infinityfree.net/welcome2024/logo-header.png" alt="InfinityFree">
-                        </a>
-                    </h1>
-                </div>
-            </div>
+
+<body oncontextmenu="return false">
+
+  <!-- pre loader -->
+  <!-- <div class="loader-container">
+    <img draggable="false" src="./assets/images/preloader.gif" alt="Loading...">
+  </div> -->
+
+  <!-- navbar starts -->
+  <header>
+    <a href="/" class="logo" style="position: relative; display: inline-block; width: 50px; height: 50px;">
+      <img src="./assets/images/logo.png" onerror="this.src='./assets/images/logo.png';" alt="Santosh Logo"
+        style="width: 36px; height: auto; display: block; position: relative; z-index: 1;" />
+      <span style="
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 50px;
+          height: 50px;
+          background-color: rgba(0, 0, 0, 0.1);
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          transition: transform 0.3s ease;
+          z-index: 0;
+        "></span>
+    </a>
+
+    <div id="menu" class="fas fa-bars"></div>
+    <nav class="navbar">
+      <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- navbar ends -->
+
+  <!-- hero section starts -->
+  <section class="home" id="home">
+    <div id="particles-js"></div>
+
+    <div class="content">
+      <h1>Namaste,<br /> I'm <strong>Santosh</strong>
+        <i class="fas fa-hands-praying"></i>
+      </h1>
+      <p>I am passionate about <span class="typing-text"></span></p>
+      <a href="#about" class="btn">
+        <span>Learn More About Me</span>
+        <i class="fas fa-arrow-circle-down"></i>
+      </a>
+      <div class="socials">
+        <ul class="social-icons">
+          <li>
+            <a class="linkedin" aria-label="Visit my LinkedIn"
+              href="https://www.linkedin.com/in/santosh-adhikari-79a783233/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="github" aria-label="Check out my GitHub" href="https://github.com/2santosh" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter" aria-label="Follow me on Twitter" href="https://twitter.com/aslicecode" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="youtube" aria-label="Watch my videos on YouTube" href="https://www.youtube.com/@CodeHiveSantosh"
+              target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </li>
+          <li>
+            <a class="website" aria-label="Visit my personal website" href="http://www.santoshadhiakri111.com.np"
+              target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-globe"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="image">
+      <img draggable="false" class="tilt" src="./assets/images/hero.jpg" alt="Santosh Adhikari - Full Stack Developer" loading="lazy" onerror="this.src='./assets/images/logo.png';">
+    </div>
+  </section>
+  <!-- hero section ends -->
+
+  <!-- about section starts -->
+  <section class="about" id="about">
+    <h2 class="heading"><i class="fas fa-user-alt"></i> About <span>Me</span></h2>
+
+    <div class="row">
+      <div class="image">
+        <img draggable="false" class="tilt" src="./assets/images/imgg.avif" alt="About Santosh Adhikari" loading="lazy" onerror="this.src='./assets/images/logo.png';">
+      </div>
+      <div class="content">
+        <h3>I'm Santosh</h3>
+        <span class="tag">Full-Stack Developer</span>
+
+        <p>I am a Developer based in Kathmandu, Nepal.
+          I am passionate about coding, enhancing my skills, and creating innovative applications and websites.
+          I specialize in building WebApps and websites using modern technologies.
+          Constantly striving to improve and deliver value, I love working on both personal and professional projects.
+        </p>
+
+        <div class="box-container">
+          <div class="box">
+            <p><span> email : </span> <a href="mailto:1.santoshadh@gmail.com">1.santoshadh@gmail.com</a></p>
+            <p><span> place : </span> Madhyapur Thimi, Bhaktapur, Nepal</p>
+          </div>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-inner">
-                    <div class="hero-copy">
-                        <h1 class="hero-title h2-mobile mt-0">
-                            Your domain
-                            <br /> is ready!
-                        </h1>
-                        <p class="hero-paragraph">
-                            This page is loaded from the directory <strong class="path-var">"santoshadhikari123.com.np/htdocs"</strong> of your InfinityFree hosting account. So you are ready to set up your website!
-                        </p>
-                        <p class="hero-cta">
-                            <a class="button button-primary button-shadow" href="https://forum.infinityfree.net/docs?topic=49312" target="_blank">
-                                Open Getting Started Guide
-                            </a>
-                        </p>
-                    </div>
-                    <div class="hero-illustration">
-                        <img src="https://vpassets.infinityfree.net/welcome2024/hero-illustration.svg" alt="Illustration">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="features section text-center">
-            <div class="section-square"></div>
-            <div class="container">
-                <div class="features-inner section-inner">
-                    <div class="features-wrap">
-                        <div class="feature">
-                            <div class="feature-inner">
-                                <h4 class="feature-title h3-mobile">Find website folder</h4>
-                                <p class="text-sm">
-                                    You can find the website of this domain name in the directory <strong class="path-var">"santoshadhikari123.com.np/htdocs"</strong> on your account.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-inner">
-                                <h4 class="feature-title h3-mobile">Upload an index file</h4>
-                                <p class="text-sm">
-                                    In your website directory, upload a file with the name <strong>index.php</strong> or <strong>index.html</strong> to act as the home page.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-inner">
-                                <h4 class="feature-title h3-mobile">Delete index2.html</h4>
-                                <p class="text-sm">
-                                    When your own website is set up, you can delete this file, called <strong>index2.html</strong>, from your website folder.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="pricing section">
-            <div class="section-square"></div>
-            <div class="container">
-                <div class="pricing-inner section-inner has-top-divider">
-                    <h2 class="section-title mt-0 text-center">How to build a website</h2>
-                    <div class="pricing-tables-wrap">
-                        <div class="pricing-table">
-                            <div class="pricing-table-inner">
-                                <div class="pricing-table-main">
-                                    <h4 class="feature-title h3-mobile">Site.Pro Builder</h4>
-                                    <p class="text-sm">
-                                        Use the Site.pro website builder, included with InfinityFree, to build anything from simple landing pages to fully featured online stores.
-                                        All fully SEO optimized, completely mobile friendly and available in many languages.
-                                    </p>
-                                </div>
-                                <div class="pricing-table-cta">
-                                    <a class="button button-primary button-shadow button-block" href="https://forum.infinityfree.com/docs?topic=94339" target="_blank">
-                                        Learn about Site.Pro
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pricing-table">
-                            <div class="pricing-table-inner">
-                                <div class="pricing-table-main">
-                                    <h4 class="feature-title h3-mobile">Softaculous Installer</h4>
-                                    <p class="text-sm">
-                                        Use the Softaculous automatic script installer to install one of over 400 scripts, applications and CMS like WordPress with only a few clicks, and automatically keep them up to date.
-                                    </p>
-                                </div>
-                                <div class="pricing-table-cta">
-                                    <a class="button button-primary button-shadow button-block" href="https://forum.infinityfree.com/docs?topic=49314" target="_blank">
-                                        Learn about Softaculous
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pricing-table">
-                            <div class="pricing-table-inner">
-                                <div class="pricing-table-main">
-                                    <h4 class="feature-title h3-mobile">Upload your own</h4>
-                                    <p class="text-sm">
-                                        Migrate your existing website from your previous hosting provider, or build your own website using the tools of your choice! With PHP and MySQL support, you can build almost anything.
-                                    </p>
-                                </div>
-                                <div class="pricing-table-cta">
-                                    <a class="button button-primary button-shadow button-block" href="https://forum.infinityfree.com/docs?topic=49306">
-                                        Learn about Uploading
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer text-light">
-        <div class="container">
-            <div class="site-footer-inner has-top-divider">
-                <div class="brand footer-brand">
-                    <a href="https://www.infinityfree.com">
-                        <img src="https://vpassets.infinityfree.net/welcome2024/logo-footer.png" alt="InfinityFree">
-                    </a>
-                </div>
-                <ul class="footer-links list-reset">
-                    <li>
-                        <a href="https://dash.infinityfree.com/login">Client Area</a>
-                    </li>
-                    <li>
-                        <a href="https://forum.infinityfree.com/docs">Knowledge Base</a>
-                    </li>
-                    <li>
-                        <a href="https://forum.infinityfree.com/">Community Forum</a>
-                    </li>
-                </ul>
-                <ul class="footer-secondary-links list-reset">
-                    <li>
-                        <a href="https://www.infinityfree.com">
-                            Create your own completely free web hosting account with InfinityFree!
-                        </a>
-                    </li>
-                </ul>
-                <div class="footer-copyright">
-                    Copyright &copy; InfinityFree, All rights reserved
-                </div>
-            </div>
+        <div class="resumebtn">
+          <a href="http://www.santoshadhikari111.com.np/?i=1" target="_blank" class="btn" rel="noopener noreferrer">
+            <span>About More</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
+  <!-- about section ends -->
+
+  <!-- skills section starts -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <h2 class="heading text-center mb-5">
+        <i class="fas fa-laptop-code"></i> Skills &amp; <span>Abilities</span>
+      </h2>
+      <div class="row" id="skillsContainer">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/48px-Tailwind_CSS_Logo.png" onerror="this.src='./assets/images/logo.png';"
+                alt="TailwindCSS">
+              <span>TailwindCSS</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/bootstrap.png" onerror="this.src='./assets/images/logo.png';" alt="Bootstrap">
+              <span>Bootstrap</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/sass.png" onerror="this.src='./assets/images/logo.png';" alt="Sass">
+              <span>Sass</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" onerror="this.src='./assets/images/logo.png';" alt="HTML5">
+              <span>HTML5</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/css3.png" onerror="this.src='./assets/images/logo.png';" alt="CSS3">
+              <span>CSS3</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" onerror="this.src='./assets/images/logo.png';" alt="JavaScript">
+              <span>JavaScript</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" onerror="this.src='./assets/images/logo.png';" alt="Java">
+              <span>Java</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/offices/48/000000/php-logo.png" onerror="this.src='./assets/images/logo.png';" alt="PHP">
+              <span>PHP</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/python--v1.png" onerror="this.src='./assets/images/logo.png';" alt="Python">
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png" onerror="this.src='./assets/images/logo.png';" alt="C++">
+              <span>C++</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/mysql-logo.png" onerror="this.src='./assets/images/logo.png';" alt="MySQL">
+              <span>MySQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/git.png" onerror="this.src='./assets/images/logo.png';" alt="Git VCS">
+              <span>Git VCS</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/glyph-neue/48/ffffff/github.png" onerror="this.src='./assets/images/logo.png';" alt="GitHub">
+              <span>GitHub</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+          <div class="bar text-center p-3 shadow-sm rounded">
+            <div class="info">
+              <img src="https://img.icons8.com/color/48/000000/wordpress.png" onerror="this.src='./assets/images/logo.png';" alt="WordPress">
+              <span>WordPress</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- skills section ends -->
+
+  <!-- education section starts -->
+  <section class="education" id="education">
+    <h1 class="heading"><i class="fas fa-graduation-cap"></i> My <span>Education</span></h1>
+    <p class="qoute">Education is not the learning of facts, but the training of the mind to think.</p>
+
+    <div class="box-container">
+      <div class="box">
+        <div class="image">
+          <img draggable="false" src="./assets/images/educat/CITE.jpg" alt="College of Information Technology and Engineering" loading="lazy" onerror="this.src='./assets/images/logo.png';">
+        </div>
+        <div class="content">
+          <h3>Bachelor of Information Technology</h3>
+          <p>College of Information Technology and Engineering | Kathmandu</p>
+          <h4>Apr, 2021 - Present | Ongoing</h4>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="image">
+          <img draggable="false" src="./assets/images/educat/SAS.jpg" onerror="this.src='./assets/images/logo.png';" alt="Supreme Academy Secondary School">
+        </div>
+        <div class="content">
+          <h3>Management</h3>
+          <p>Supreme Academy Secondary School | Bhaktapur</p>
+          <h4>Sep, 2018 - Mar, 2021 | Completed</h4>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="image">
+          <img draggable="false" src="./assets/images/educat/GSS.jpg" onerror="this.src='./assets/images/logo.png';" alt="Ganesh Secondary School">
+        </div>
+        <div class="content">
+          <h3>Secondary Education (SEE)</h3>
+          <p>Ganesh Secondary School | Bhaktapur</p>
+          <h4>Apr, 2018 | Completed</h4>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- education section ends -->
+
+
+
+  <!-- work project section starts -->
+  <section class="work" id="work">
+
+    <h2 class="heading"><i class="fas fa-laptop-code"></i> Projects <span>Made</span></h2>
+
+    <div class="box-container">
+
+      <div class="box tilt">
+        <img draggable="false" src="./assets/images/projects/portfolio1.PNG" onerror="this.src='./assets/images/logo.png';" alt="" />
+        <div class="content">
+          <div class="tag">
+            <h3>Portfolio Website</h3>
+          </div>
+          <div class="desc">
+            <p>Personal portfolio website. Don't need much info about it, just scroll down. You're here only!</p>
+            <div class="btns">
+              <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+              <a href="https://github.com/jigar-sable/Portfolio-Website" class="btn" target="_blank">Code <i
+                  class="fas fa-code"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="viewall">
+      <a href="/projects" class="btn"><span>View All</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </section>
+  <!-- work project section ends -->
+
+  <!-- experience section starts -->
+  <section class="experience" id="experience">
+
+    <h2 class="heading"><i class="fas fa-briefcase"></i> Experience </h2>
+
+    <div class="timeline">
+      <div class="container left">
+        <div class="content">
+          <div class="tag">
+            <h2>Full Stack Developer</h2>
+          </div>
+          <div class="desc">
+            <h3>RWS (p2h), Kathmandu, Nepal</h3>
+            <p>Jul, 2024 - Oct, 2024</p>
+            <p>As a Full Stack Developer at P2H, I applied HTML, CSS, JavaScript, PHP, along with WordPress and
+              Elementor to create dynamic, responsive websites. My role involved front-end development, custom theme
+              creation, and backend integration for seamless content management. I also used tools like Figma,
+              Illustrator, and Adobe XD to translate design concepts into functional websites.</p>
+          </div>
+        </div>
+      </div>
+      <div class="container right">
+        <div class="content">
+          <div class="tag">
+            <h2>Volunteer</h2>
+          </div>
+          <div class="desc">
+            <h3>CAN Info Tech, Kathmandu</h3>
+            <p>Apr, 2022 - Apr, 2022</p>
+            <p>Managed and guided participants, handled tasks ranging from clearing the field to providing water and
+              managing the crowd.</p>
+          </div>
+        </div>
+      </div>
+      <!-- View All button -->
+      <!-- <div class="morebtn">
+        <a href="/experience" class="btn"><span>View All</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div> -->
+
+    </div>
+
+  </section>
+  <!-- experience section ends -->
+
+
+  <!-- contact section starts -->
+  <section class="contact" id="contact">
+
+    <h2 class="heading"><i class="fas fa-headset"></i> Get in <span>Touch</span></h2>
+
+    <div class="container">
+      <div class="content">
+        <div class="image-box">
+          <img draggable="false" src="./assets/images/contact1.png" onerror="this.src='./assets/images/logo.png';" alt="">
+        </div>
+        <form id="contact-form">
+
+          <div class="form-group">
+            <div class="field">
+              <input type="text" name="name" placeholder="Name" required>
+              <i class='fas fa-user'></i>
+            </div>
+            <div class="field">
+              <input type="text" name="email" placeholder="Email" required>
+              <i class='fas fa-envelope'></i>
+            </div>
+            <div class="field">
+              <input type="text" name="phone" placeholder="Phone">
+              <i class='fas fa-phone-alt'></i>
+            </div>
+            <div class="message">
+              <textarea placeholder="Message" name="message" required></textarea>
+              <i class="fas fa-comment-dots"></i>
+            </div>
+          </div>
+          <div class="button-area">
+            <button type="submit">
+              Submit <i class="fa fa-paper-plane"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- contact section ends -->
+
+
+  <!-- footer section starts -->
+  <section class="footer">
+
+    <div class="box-container">
+
+      <div class="box">
+        <h3>Santosh's Portfolio</h3>
+        <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br /> <br /> Keep Rising
+          🚀. Connect with me over live chat!</p>
+      </div>
+
+      <div class="box">
+        <h3>quick links</h3>
+        <a href="#home"><i class="fas fa-chevron-circle-right"></i> home</a>
+        <a href="#about"><i class="fas fa-chevron-circle-right"></i> about</a>
+        <a href="#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
+        <a href="#education"><i class="fas fa-chevron-circle-right"></i> education</a>
+        <a href="#work"><i class="fas fa-chevron-circle-right"></i> work</a>
+        <a href="#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
+      </div>
+
+      <div class="box">
+        <h3>contact info</h3>
+        <!-- <p> <i class="fas fa-phone"></i>+91 XXX-XXX-XXXX</p> -->
+        <p> <i class="fas fa-envelope"></i>1.santoshadh@gmail.com</p>
+        <p> <i class="fas fa-map-marked-alt"></i>Kathmandu, Nepal</p>
+        <div class="share">
+
+          <a href="https://www.linkedin.com/in/santosh-adhikari-79a783233/" class="fab fa-linkedin"
+            aria-label="LinkedIn" target="_blank"></a>
+          <a href="https://github.com/2santosh" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
+          <a href="mailto:1.santoshadh@gmail.com" class="fas fa-envelope" aria-label="Mail" target="_blank"></a>
+          <a href="" class="fab fa-twitter" aria-label="Twitter" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a href="https://santoshadhikari111.com.np/">
+        CodeWithSantosh</a></h1>
+
+  </section>
+  <!-- footer section ends -->
+
+
+  <!-- scroll top btn -->
+  <a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
+  <!-- scroll back to top -->
+
+
+  <!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
+  <!-- jquery cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- typed.js cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
+    integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- particle.js links -->
+  <script src="./assets/js/particles.min.js"></script>
+  <script src="./assets/js/app.js"></script>
+
+  <!-- vanilla tilt.js links -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
+    integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- scroll reveal anim -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+
+  <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>
