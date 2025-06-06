@@ -126,20 +126,21 @@ $experienceList = getExperience();
         <div class="row" id="skillsContainer">
             <?php foreach ($skills as $skill): ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div class="bar text-center p-3 shadow-sm rounded">
-                    <div class="info">
-                        <img src="<?= htmlspecialchars($skill['image_url']) ?>"
-                            onerror="this.src='./assets/images/logo.png';"
-                            alt="<?= htmlspecialchars($skill['alt_text'] ?? $skill['name']) ?>">
-                        <span><?= htmlspecialchars($skill['name']) ?></span>
-                    </div>
+                <div class="skill-circle" tabindex="0" role="button" aria-label="<?= htmlspecialchars($skill['name']) ?>">
+                    <img src="<?= htmlspecialchars($skill['image_url']) ?>"
+                        onerror="this.src='./assets/images/logo.png';"
+                        alt="<?= htmlspecialchars($skill['alt_text'] ?? $skill['name']) ?>"
+                        class="skill-icon">
                 </div>
+                <div class="skill-name text-center mt-2"><?= htmlspecialchars($skill['name']) ?></div>
             </div>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
 <!-- skills section ends -->
+
+
 
 <!-- education section starts -->
 <section class="education" id="education">
@@ -226,12 +227,15 @@ $experienceList = getExperience();
             <div class="content">
                 <h3><?= htmlspecialchars($exp['title']) ?></h3>
                 <p><?= htmlspecialchars($exp['description']) ?></p>
-                <span class="date"><?= htmlspecialchars($exp['timeline']) ?></span>
+                <span class="date">
+                    <?= htmlspecialchars($exp['timeline'] ?? 'Date not specified') ?>
+                </span>
             </div>
         </div>
         <?php endforeach; ?>
     </div>
 </section>
+
 <!-- experience section ends -->
 
 <!-- contact section starts -->
@@ -277,6 +281,7 @@ $experienceList = getExperience();
 <!-- contact section ends -->
 
 <style>
+  
   .contact-row {
     display: flex;
     flex-wrap: wrap;
@@ -401,6 +406,115 @@ $experienceList = getExperience();
       max-width: 100%;
     }
   }
+.skill-circle {
+    width: 70px;
+    height: 70px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-circle:hover,
+.skill-circle:focus {
+    background-color: #e0f7fa;
+    box-shadow: 0 6px 15px rgba(0, 150, 136, 0.4);
+    transform: scale(1.15);
+    outline: none;
+}
+
+.skill-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    user-select: none;
+}
+
+.skill-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+    user-select: none;
+}
+
+/* Responsive adjustment */
+@media (max-width: 576px) {
+    .skill-circle {
+        width: 60px;
+        height: 60px;
+    }
+    .skill-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .skill-name {
+        font-size: 0.85rem;
+    }
+}
+.col-6, .col-sm-4, .col-md-3, .col-lg-2 {
+    /* Bootstrap's grid already handles width */
+    /* Ensure text-center is applied on the container */
+    text-align: center; /* This centers inline and inline-block children */
+}
+
+.skill-circle {
+    width: 70px;
+    height: 70px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    display: inline-flex; /* inline-flex helps center inside parent */
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* center the circle itself */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-circle:hover,
+.skill-circle:focus {
+    background-color: #e0f7fa;
+    box-shadow: 0 6px 15px rgba(0, 150, 136, 0.4);
+    transform: scale(1.15);
+    outline: none;
+}
+
+.skill-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    user-select: none;
+}
+
+.skill-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 8px;
+    user-select: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .skill-circle {
+        width: 60px;
+        height: 60px;
+    }
+    .skill-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .skill-name {
+        font-size: 0.85rem;
+    }
+}
+
+
 </style>
 
 <?php

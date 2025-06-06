@@ -1,10 +1,10 @@
 <?php
 // config.php - Database configuration
 
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "";
-$db_name = "santosh-portfolio";
+$db_host = "sql113.infinityfree.com";
+$db_user = "if0_37699110";
+$db_pass = "oZ9hQi55krY";
+$db_name = "if0_37699110_santos_portfolio";
 $db_port = 3306; // default MySQL port
 
 // Other global configurations can go here

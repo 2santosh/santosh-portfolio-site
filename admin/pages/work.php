@@ -1,37 +1,57 @@
 <?php
 session_start();
 
+$maxUploadSize = 256 * 1024 * 1024; // 256 MB limit
+
+// Pre-check to stop processing if POST content size exceeds limit
+if (isset($_SERVER['CONTENT_LENGTH']) && $_SERVER['CONTENT_LENGTH'] > $maxUploadSize) {
+    $_SESSION['message'] = "Uploaded file is too large. Maximum allowed size is 256 MB.";
+    header("Location: work.php");
+    exit();
+}
+
 $rootPath = realpath(dirname(__DIR__, 2));
 define('ROOT_PATH', $rootPath);
+define('BASE_URL', '/');
 
 require_once ROOT_PATH . '/db.php';
 require_once ROOT_PATH . '/includes/functions.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . ROOT_PATH . "/login/login.php");
+    header("Location: " . BASE_URL . "login/login.php");
     exit();
 }
 
-// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_project'])) {
         $title = $mysqli->real_escape_string($_POST['title']);
         $description = $mysqli->real_escape_string($_POST['description']);
         $code_url = $mysqli->real_escape_string($_POST['code_url']);
 
-        // Default image path
         $imagePath = 'assets/images/projects/default.png';
 
-        // Handle image upload
         if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
-            $imageName = basename($_FILES['image_file']['name']);
-            $targetDir = ROOT_PATH . '/assets/images/projects/';
-            // Ensure unique filename
-            $imageName = time() . '_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $imageName);
-            $targetFile = $targetDir . $imageName;
+            $fileTmpPath = $_FILES['image_file']['tmp_name'];
+            $fileMimeType = mime_content_type($fileTmpPath);
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
-            if (move_uploaded_file($_FILES['image_file']['tmp_name'], $targetFile)) {
-                $imagePath = 'assets/images/projects/' . $imageName;
+            if (in_array($fileMimeType, $allowedTypes)) {
+                $imageName = basename($_FILES['image_file']['name']);
+                $targetDir = ROOT_PATH . '/assets/images/projects/';
+                $imageName = time() . '_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $imageName);
+                $targetFile = $targetDir . $imageName;
+
+                if (move_uploaded_file($fileTmpPath, $targetFile)) {
+                    $imagePath = 'assets/images/projects/' . $imageName;
+                } else {
+                    $_SESSION['message'] = "Error moving uploaded file.";
+                    header("Location: work.php");
+                    exit();
+                }
+            } else {
+                $_SESSION['message'] = "Invalid image type. Allowed types: JPG, PNG, GIF.";
+                header("Location: work.php");
+                exit();
             }
         }
 
@@ -40,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mysqli->query($sql);
 
         $_SESSION['message'] = "Project added!";
-        header("Location: projects.php");
+        header("Location: work.php");
         exit();
     }
 
@@ -50,19 +70,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description = $mysqli->real_escape_string($_POST['description']);
         $code_url = $mysqli->real_escape_string($_POST['code_url']);
 
-        // Start building SQL update string
         $imageUpdate = "";
 
-        // Check if new image uploaded
         if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
-            $imageName = basename($_FILES['image_file']['name']);
-            $targetDir = ROOT_PATH . '/assets/images/projects/';
-            $imageName = time() . '_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $imageName);
-            $targetFile = $targetDir . $imageName;
+            $fileTmpPath = $_FILES['image_file']['tmp_name'];
+            $fileMimeType = mime_content_type($fileTmpPath);
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
-            if (move_uploaded_file($_FILES['image_file']['tmp_name'], $targetFile)) {
-                $imagePath = 'assets/images/projects/' . $imageName;
-                $imageUpdate = ", image='$imagePath'";
+            if (in_array($fileMimeType, $allowedTypes)) {
+                $imageName = basename($_FILES['image_file']['name']);
+                $targetDir = ROOT_PATH . '/assets/images/projects/';
+                $imageName = time() . '_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $imageName);
+                $targetFile = $targetDir . $imageName;
+
+                if (move_uploaded_file($fileTmpPath, $targetFile)) {
+                    $imagePath = 'assets/images/projects/' . $imageName;
+                    $imageUpdate = ", image='$imagePath'";
+                } else {
+                    $_SESSION['message'] = "Error moving uploaded file.";
+                    header("Location: work.php");
+                    exit();
+                }
+            } else {
+                $_SESSION['message'] = "Invalid image type. Allowed types: JPG, PNG, GIF.";
+                header("Location: work.php");
+                exit();
             }
         }
 
@@ -70,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mysqli->query($sql);
 
         $_SESSION['message'] = "Project updated!";
-        header("Location: projects.php");
+        header("Location: work.php");
         exit();
     }
 }
@@ -79,7 +111,7 @@ if (isset($_GET['delete_project'])) {
     $id = (int)$_GET['delete_project'];
     $mysqli->query("DELETE FROM projects WHERE id=$id");
     $_SESSION['message'] = "Project deleted!";
-    header("Location: projects.php");
+    header("Location: work.php");
     exit();
 }
 
@@ -107,7 +139,7 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
 
     <form method="POST" class="mb-4" enctype="multipart/form-data">
         <?php if ($editingProject): ?>
-            <input type="hidden" name="project_id" value="<?= $editingProject['id'] ?>">
+            <input type="hidden" name="project_id" value="<?= (int)$editingProject['id'] ?>">
         <?php endif; ?>
         <div class="row g-3">
             <div class="col-md-4">
@@ -122,7 +154,7 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
                 <label class="form-label">Image Upload <?= $editingProject ? '(leave blank to keep current image)' : '' ?></label>
                 <input type="file" name="image_file" class="form-control" <?= $editingProject ? '' : 'required' ?>>
                 <?php if ($editingProject && !empty($editingProject['image'])): ?>
-                    <img src="/<?= htmlspecialchars($editingProject['image']) ?>" onerror="this.src='/assets/images/logo.png';" width="100" class="mt-2">
+                    <img src="<?= BASE_URL . htmlspecialchars($editingProject['image']) ?>" alt="<?= htmlspecialchars($editingProject['title']) ?>" onerror="this.src='<?= BASE_URL ?>assets/images/logo.png';" width="100" class="mt-2">
                 <?php endif; ?>
             </div>
             <div class="col-md-4">
@@ -132,7 +164,7 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
             <div class="col-md-12">
                 <?php if ($editingProject): ?>
                     <button type="submit" name="update_project" class="btn btn-warning">Update</button>
-                    <a href="projects.php" class="btn btn-secondary">Cancel</a>
+                    <a href="work.php" class="btn btn-secondary">Cancel</a>
                 <?php else: ?>
                     <button type="submit" name="add_project" class="btn btn-success">Add Project</button>
                 <?php endif; ?>
@@ -155,7 +187,12 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
         <?php foreach ($projects as $project): ?>
             <tr>
                 <td>
-                    <img src="/<?= htmlspecialchars($project['image']) ?>" onerror="this.src='/assets/images/logo.png';" width="100">
+                    <?php if (!empty($project['image'])): ?>
+                    <img src="/santosh-portfolio-site/<?= BASE_URL . htmlspecialchars($project['image']) ?>"
+                        alt="<?= htmlspecialchars($project['title']) ?>" style="max-height: 100px;">
+                    <?php else: ?>
+                    No image
+                    <?php endif; ?>
                 </td>
                 <td>
                     <strong><?= htmlspecialchars($project['title']) ?></strong><br>
@@ -165,8 +202,8 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
                     <a href="<?= htmlspecialchars($project['code_url']) ?>" target="_blank" class="btn btn-sm btn-secondary">Code</a>
                 </td>
                 <td>
-                    <a href="?edit_project=<?= $project['id'] ?>" class="btn btn-sm btn-info">Edit</a>
-                    <a href="?delete_project=<?= $project['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this project?');">Delete</a>
+                    <a href="?edit_project=<?= (int)$project['id'] ?>" class="btn btn-sm btn-info">Edit</a>
+                    <a href="?delete_project=<?= (int)$project['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this project?');">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
