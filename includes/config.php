@@ -1,11 +1,11 @@
 <?php
 // config.php - Database configuration
 
-$db_host = "sql113.infinityfree.com";
-$db_user = "if0_37699110";
-$db_pass = "oZ9hQi55krY";
-$db_name = "if0_37699110_santos_portfolio";
-$db_port = 3306; // default MySQL port
+$db_host = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "santosh-portfolio";
+$db_port = 3306; //default MySQL port
 
 // Other global configurations can go here
 $base_path = '/santosh-portfolio-site/';
@@ -28,7 +28,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost') === false) {
 
 $mail_config = [
     'host' => 'admin.gmail.com', // Or your email provider
-    'username' => 'admin@email.com',
+    'username' => 'admin@gmail.com',
     'password' => 'admin',
     'port' => 587,
 ];

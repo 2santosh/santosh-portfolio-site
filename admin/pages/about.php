@@ -4,15 +4,19 @@ session_start();
 $rootPath = realpath(dirname(__DIR__, 2));
 define('ROOT_PATH', $rootPath);
 
+// Define your BASE_URL here, change this to your project URL
+define('BASE_URL', 'http://localhost/santosh-portfolio-site');
+
 require_once ROOT_PATH . '/db.php';
 require_once ROOT_PATH . '/includes/functions.php';
 
+// Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . ROOT_PATH . "/login/login.php");
+    header("Location: " . BASE_URL . "/login/login.php");
     exit();
 }
 
-// Fetch or create default about_me_content
+// Fetch or create default About Me content
 $result = $mysqli->query("SELECT * FROM about_me_content LIMIT 1");
 $aboutMeContent = $result ? $result->fetch_assoc() : null;
 
@@ -23,18 +27,45 @@ if (!$aboutMeContent) {
     $aboutMeContent = $result->fetch_assoc();
 }
 
-// Handle POST requests
+// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Update about_me_content
     if (isset($_POST['update_about_me'])) {
-        $name = $mysqli->real_escape_string($_POST['name']);
-        $role = $mysqli->real_escape_string($_POST['role']);
-        $description = $mysqli->real_escape_string($_POST['description']);
-        $image_path = $mysqli->real_escape_string($_POST['image_path']);
-        $email = $mysqli->real_escape_string($_POST['email']);
-        $location = $mysqli->real_escape_string($_POST['location']);
-
+        $name = $mysqli->real_escape_string(trim($_POST['name']));
+        $role = $mysqli->real_escape_string(trim($_POST['role']));
+        $description = $mysqli->real_escape_string(trim($_POST['description']));
+        $email = $mysqli->real_escape_string(trim($_POST['email']));
+        $location = $mysqli->real_escape_string(trim($_POST['location']));
         $id = (int)$_POST['about_me_content_id'];
+
+        $image_path = $aboutMeContent['image_path'];
+
+        if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = ROOT_PATH . '/assets/images/uploads/';
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            $fileName = time() . '_' . basename($_FILES['image_file']['name']);
+            $targetFile = $uploadDir . $fileName;
+            $relativePath = 'assets/images/uploads/' . $fileName;
+
+            $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'];
+
+            if (!in_array($ext, $allowedExtensions)) {
+                $_SESSION['error'] = "Only image files (jpg, png, webp, gif, avif) are allowed.";
+                header("Location: about.php");
+                exit();
+            }
+
+            if (move_uploaded_file($_FILES['image_file']['tmp_name'], $targetFile)) {
+                $image_path = $relativePath;
+            } else {
+                $_SESSION['error'] = "Failed to upload image.";
+                header("Location: about.php");
+                exit();
+            }
+        }
 
         $sql = "UPDATE about_me_content SET name='$name', role='$role', description='$description',
                 image_path='$image_path', email='$email', location='$location' WHERE id=$id";
@@ -48,11 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Add or update about_me_link
     if (isset($_POST['add_about_link']) || isset($_POST['update_about_link'])) {
-        $link_text = $mysqli->real_escape_string($_POST['link_text']);
-        $url = $mysqli->real_escape_string($_POST['url']);
-        $icon_class = $mysqli->real_escape_string($_POST['icon_class']);
+        $link_text = $mysqli->real_escape_string(trim($_POST['link_text']));
+        $url = $mysqli->real_escape_string(trim($_POST['url']));
+        $icon_class = $mysqli->real_escape_string(trim($_POST['icon_class']));
         $about_me_content_id = (int)$_POST['about_me_content_id'];
 
         if (isset($_POST['update_about_link'])) {
@@ -73,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Handle delete link
 if (isset($_GET['delete_about_link'])) {
     $id = (int)$_GET['delete_about_link'];
     if ($mysqli->query("DELETE FROM about_me_links WHERE id=$id")) {
@@ -85,7 +114,7 @@ if (isset($_GET['delete_about_link'])) {
     exit();
 }
 
-// Fetch links
+// Fetch About Me links
 $aboutLinks = [];
 $result = $mysqli->query("SELECT * FROM about_me_links WHERE about_me_content_id = " . (int)$aboutMeContent['id'] . " ORDER BY id DESC");
 if ($result) {
@@ -93,7 +122,7 @@ if ($result) {
     $result->free();
 }
 
-// Fetch for editing
+// Check if editing a link
 $editingLink = null;
 if (isset($_GET['edit_about_link'])) {
     $id = (int)$_GET['edit_about_link'];
@@ -110,6 +139,7 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
 
 <div class="container py-4">
     <h2>Edit About Me Section</h2>
+
     <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= htmlspecialchars($_SESSION['message']) ?>
@@ -117,6 +147,7 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
         </div>
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
+
     <?php if (isset($_SESSION['error'])): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?= htmlspecialchars($_SESSION['error']) ?>
@@ -125,8 +156,9 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
         <?php unset($_SESSION['error']); ?>
     <?php endif; ?>
 
-    <form method="POST" class="mb-5">
-        <input type="hidden" name="about_me_content_id" value="<?= $aboutMeContent['id'] ?>">
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
+        <input type="hidden" name="about_me_content_id" value="<?= (int)$aboutMeContent['id'] ?>">
+
         <div class="mb-3">
             <label class="form-label">Name</label>
             <input type="text" name="name" class="form-control" required value="<?= htmlspecialchars($aboutMeContent['name']) ?>">
@@ -140,8 +172,11 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
             <textarea name="description" class="form-control" rows="4" required><?= htmlspecialchars($aboutMeContent['description']) ?></textarea>
         </div>
         <div class="mb-3">
-            <label class="form-label">Image Path</label>
-            <input type="text" name="image_path" class="form-control" required value="<?= htmlspecialchars($aboutMeContent['image_path']) ?>">
+            <label class="form-label">Upload Image</label>
+            <input type="file" name="image_file" class="form-control" accept=".jpg,.jpeg,.png,.webp,.gif,.avif">
+            <?php if (!empty($aboutMeContent['image_path'])): ?>
+                <img src="<?= BASE_URL . '/' . htmlspecialchars($aboutMeContent['image_path']) ?>" alt="Current Image" style="max-width: 150px;" class="mt-2">
+            <?php endif; ?>
         </div>
         <div class="mb-3">
             <label class="form-label">Email</label>
@@ -151,6 +186,7 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
             <label class="form-label">Location</label>
             <input type="text" name="location" class="form-control" required value="<?= htmlspecialchars($aboutMeContent['location']) ?>">
         </div>
+
         <button type="submit" name="update_about_me" class="btn btn-primary">Update</button>
     </form>
 
@@ -158,9 +194,9 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
     <h3>Manage About Me Links</h3>
     <form method="POST" class="mb-4">
         <?php if ($editingLink): ?>
-            <input type="hidden" name="about_link_id" value="<?= $editingLink['id'] ?>">
+            <input type="hidden" name="about_link_id" value="<?= (int)$editingLink['id'] ?>">
         <?php endif; ?>
-        <input type="hidden" name="about_me_content_id" value="<?= $aboutMeContent['id'] ?>">
+        <input type="hidden" name="about_me_content_id" value="<?= (int)$aboutMeContent['id'] ?>">
         <div class="row g-3 align-items-end">
             <div class="col-md-3">
                 <label class="form-label">Link Text</label>
@@ -196,19 +232,20 @@ require_once ROOT_PATH . '/admin/includes/admin-header.php';
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($aboutLinks as $link): ?>
-                <tr>
-                    <td><?= $link['id'] ?></td>
-                    <td><?= htmlspecialchars($link['link_text']) ?></td>
-                    <td><a href="<?= htmlspecialchars($link['url']) ?>" target="_blank"><?= htmlspecialchars($link['url']) ?></a></td>
-                    <td><i class="<?= htmlspecialchars($link['icon_class']) ?>"></i> <?= htmlspecialchars($link['icon_class']) ?></td>
-                    <td>
-                        <a href="?edit_about_link=<?= $link['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="?delete_about_link=<?= $link['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this link?');">Delete</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            <?php if (empty($aboutLinks)): ?>
+            <?php if (!empty($aboutLinks)): ?>
+                <?php foreach ($aboutLinks as $link): ?>
+                    <tr>
+                        <td><?= (int)$link['id'] ?></td>
+                        <td><?= htmlspecialchars($link['link_text']) ?></td>
+                        <td><a href="<?= htmlspecialchars($link['url']) ?>" target="_blank" rel="noopener noreferrer"><?= htmlspecialchars($link['url']) ?></a></td>
+                        <td><i class="<?= htmlspecialchars($link['icon_class']) ?>"></i> <?= htmlspecialchars($link['icon_class']) ?></td>
+                        <td>
+                            <a href="?edit_about_link=<?= (int)$link['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="?delete_about_link=<?= (int)$link['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this link?');">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
                 <tr><td colspan="5" class="text-center">No links found.</td></tr>
             <?php endif; ?>
         </tbody>
